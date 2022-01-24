@@ -1,37 +1,8 @@
 <?php
-    if (isset($_POST["event_submit"])) {
+        $year = $_GET['year'];
         $con = mysqli_connect("localhost", "root", "", "eeea") or die("Could not connect to the server");
-        echo("<div class=\"alert alert-success\" role=\"alert\">Successfully updated</div>");
-
-        $event_name = $_POST["event_name"];
-        $academic_year = $_POST["academic_year"];
-        $event_desc = $_POST["event_desc"];
-        $event_link = $_POST["event_link"];
-        echo ($event_link);
-        $file = $_FILES["event_image"];
-
-        if ($file["error"]) {
-            die("<div class=\"alert alert-danger\" role=\"alert\">Error in uploading an image</div>");
-        }
-
-        $image = addslashes(file_get_contents($file["tmp_name"]));
-
-        $query = "";
-        if (!$event_link)  {
-            $query = "insert into events (date,	event_name,	academic_year, description, image) values(NOW(), '$event_name', '$academic_year', '$event_desc', '$image')";
-        }
-        else {
-            $query = "insert into events (date,	event_name,	academic_year, description, link, image) values(NOW(), '$event_name', '$academic_year', '$event_desc', '$event_link', '$image')";
-        }
-
-        $action = mysqli_query($con, $query);
-
-        if (!$action) {
-            die("<div class=\"alert alert-danger\" role=\"alert\">Error in uploading data</div>");
-        }
-
-        mysqli_close($con);
-    }
+        $selected_data = mysqli_query($con, "select * from events where academic_year='$year'");
+        $rem_year = mysqli_query($con, "select distinct academic_year from events where academic_year <> '$year' order by academic_year desc");
 ?>
 
 <!DOCTYPE html>
@@ -41,45 +12,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Events</title>
+    <link href="events.css" rel="stylesheet" type="text/css" />
+    <link href="timeline.css" rel="stylesheet" type="text/css" />
+
+    <!-- Google Fonts links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Events - EEEA</title>
 </head>
 <body>
-    <div class="">
-        <form action="events.php" method="POST" enctype="multipart/form-data" class="m-2 m-md-5" >
-            <div class="mb-3">
-                <label for="event_name" class="form-label">Event name</label>
-                <input type="text" name="event_name" class="form-control" id="event_name" aria-describedby="eventName" required>
-            </div>
-            <div class="mb-3">
-                <label for="academic_year">Academic year: </label>
-                <select name="academic_year" id="academic_year" class="form-select" required>
-                    <option value="2021" selected>2021-2022</option>
-                    <option value="2020">2020-2021</option>
-                    <option value="2019">2019-2020</option>
-                    <option value="2018">2018-2019</option>
-                    <option value="2017">2017-2018</option>
-                    <option value="2016">2016-2017</option>
-                </select>
-            </div>
-            <div class="form-floating mb-3">
-                <textarea class="form-control" name="event_desc" placeholder="Enter the event description" id="event_description" required ></textarea>
-                <label for="event_description">Description</label>
-            </div>
-            <div class="">
-                <label for="basic-url" class="form-label">Youtube Link</label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text text-sm" id="basic-addon3">URL</span>
-                    <input type="text" name="event_link" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+    <div class="header">
+       <img src="./images/PSG_Logo.png"/>
+       <div class="brand_div">
+           <h2 class="brand_clge">PSG College of Technology</h2>
+           <h2 class="brand_eeea">EEEA - <?php echo("(".$year."-".($year+1).")") ?></h2>
+       </div>
+    </div>
+    
+    <div class="__containter">
+        <?php
+            $card_position_left = true;
+            while ($row = mysqli_fetch_array($selected_data)) {
+        ?>
+        
+        <div class="timeline">
+            <?php if ($card_position_left) {
+                echo('<div class="container left">');
+                $card_position_left = !$card_position_left;
+            }
+            else {
+                echo('<div class="container right">');
+                $card_position_left = !$card_position_left;
+            }
+            ?>
+                <div class="content" type="button" data-bs-toggle="modal" <?php echo('data-bs-target="#events_modal_'.$row['id'].'"'); ?> >
+                <h2 class=""><?php  echo($row['event_name']) ?></h2>
+                <div class="__card-prev-img">
+                    <?php echo '<img src="data:image/png;base64,'.base64_encode($row['image']).'" />'; ?>
+                </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" <?php echo('id="events_modal_'.$row['id'].'"'); ?> tabindex="-1" aria-labelledby="events_modal_lable_1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="events_modal_lable_1"><?php  echo($row['event_name']) ?></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?php echo($row['description']) ?>
+                    </div>
+                    <?php 
+                        if($row['link']) echo('<div class="modal-footer"><a href="'.$row['link'].'" class="text-decoration-none text-white" target="blank"><button type="button" class="btn btn-danger">Youtube</button></a></div>');
+                    ?>
+                    </div>
+                </div>
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="image_upload" class="form-label">Event image: </label>
-                <input class="form-control" name="event_image" type="file" id="image_upload" required>
-            </div>
-            <div class="mb-3">
-                <input type="submit" name="event_submit" value="Upload" class="btn btn-primary">
-            </div>
-        </form>
+        </div>
+        <?php 
+            }
+        ?>
     </div>
+
+    <div class="other-events">
+        <h3 class="">Events</h3> 
+        <ul class="">
+            <?php
+                while ($row = mysqli_fetch_array($rem_year)) {
+            ?>
+            <li class="events-list" ><a href=<?php echo ("./events.php?year=".$row['academic_year'].'>'.$row['academic_year']."-".($row['academic_year']+1)) ?></a></li>
+            <?php } ?>
+        </ul>
+    </div>
+    <footer class="copyrights">
+        <h4>&copy Copyrights <br/>Web Designing Team EEEA, PSG TECH</h4>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
