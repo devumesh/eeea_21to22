@@ -10,6 +10,7 @@
         $event_desc = $_POST["event_desc"];
         $event_link = $_POST["event_link"];
         $file = $_FILES["event_image"];
+        $event_date = $_POST["event_date"];
 
         if ($file["size"] > 256000) {
             echo("<div class=\"alert alert-danger\" role=\"alert\">File size is more the 250kb</div>");
@@ -22,10 +23,10 @@
 
             $query = "";
             if ($event_link == "")  {
-                $query = "insert into events (date,	event_name,	academic_year, description, image) values(NOW(), '$event_name', '$academic_year', '$event_desc', '$image')";
+                $query = "insert into events (date,	event_name,	academic_year, description, image, event_date) values(NOW(), '$event_name', '$academic_year', '$event_desc', '$image', '$event_date')";
             }
             else {
-                $query = "insert into events (date,	event_name,	academic_year, description, link, image) values(NOW(), '$event_name', '$academic_year', '$event_desc', '$event_link', '$image')";
+                $query = "insert into events (date,	event_name,	academic_year, description, link, image, event_date) values(NOW(), '$event_name', '$academic_year', '$event_desc', '$event_link', '$image', '$event_date')";
             }
 
             $action = mysqli_query($con, $query);
@@ -76,6 +77,12 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text text-sm" id="basic-addon3">URL</span>
                     <input type="text" name="event_link" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                </div>
+            </div>
+            <div class="">
+                <label for="event_date" class="form-label">Event Date</label>
+                <div class="input-group mb-3">
+                    <input type="date" name="event_date" id="event_date">
                 </div>
             </div>
             <div class="mb-3">

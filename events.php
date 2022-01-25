@@ -62,6 +62,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <?php if($row['event_date']) echo("<h5>Event Date: ".$row['event_date']."</h5>"); ?>
                         <?php echo($row['description']) ?>
                     </div>
                     <?php 

@@ -4,7 +4,7 @@
 .header{
     display: flex;
     padding: 10px 15px;
-    background-color: #CCD1E4;
+    background-color: #fff;
 }
 .header img{
     max-width: 60px;
@@ -44,16 +44,16 @@
 }
 .__containter {
     width: 100%;
-    background-color: #474e5d;
+    background-color: #46B3E6;
 }
 
 .other-events {
     width: 100%;
-    background-color: #1A374D;
+    background-color: #0060CA;
     padding: 20px 30px;
 }
 .other-events h3 {
-    color: #B1D0E0;
+    color: #DFF4F3;
 }
 .events-list {
     list-style: none;
@@ -67,14 +67,14 @@ ul li::before {
     margin-left: -1em;
   }
 .events-list a {
-    color: #B1D0E0;
+    color: #DFF4F3;
     text-decoration: none;
 }
 .events-list a:hover{
     color: #6998AB;
 }
 .copyrights {
-    background-color: #22577E;
+    background-color: #151965;
     text-align: center;
     padding: 20px 0;
     color: #95D1CC;
