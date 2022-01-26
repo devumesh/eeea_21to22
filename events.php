@@ -23,11 +23,13 @@
 </head>
 <body>
     <div class="header">
-       <img src="./images/PSG_Logo.png"/>
-       <div class="brand_div">
-           <h2 class="brand_clge">PSG College of Technology</h2>
-           <h2 class="brand_eeea">EEEA - <?php echo("(".$year."-".($year+1).")") ?></h2>
-       </div>
+        <a href="./welcome.php">
+            <img src="./images/PSG_Logo.png"/>
+            <div class="brand_div">
+                <h2 class="brand_clge">PSG College of Technology</h2>
+                <h2 class="brand_eeea">EEEA - <?php echo("(".$year."-".($year+1).")") ?></h2>
+            </div>
+        </a>
     </div>
     
     <div class="__containter">

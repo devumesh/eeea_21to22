@@ -26,29 +26,15 @@
                 <img src="./images/eeea_logo.png">
             </div>
             <div class="logo_content">
-                <p> The Electrical and Electronics Engineering Association (EEEA) is an umbrella association of the Department of 
-                    Electrical and Electronics Engineering which ropes in UG students and faculties of the Department and bonds 
-                    them up in a very constructive manner so as to nurture the various administrative, managerial and leadership 
-                    talents of young men and women and mould them as a responsible citizen of this country and to a farther extent, 
-                    an invaluable asset to the whole human kind.</p>
+                <p> The Electrical and Electronics Engineering Association (EEEA) is the Department of Electrical and Electronics Engineering’s very own guild, committed to function as the uniting front for all young, budding UG students and the versatile professors in the department. It is also sincerely focused on providing the students with immense opportunities to work, grow and excel in their field of interest while soundlessly nurturing their technical, leadership, and managerial skills, ultimately grooming them for all aspects of society. It ensures the betterment and upliftment of humanity.</p>
             </div>
         </div>
 
         <!-- code for about us -->
         <div class="about_us">
             <h2>About-Us</h2>
-            <p>The EEEA is actively involved in conducting various activities that are aimed to inculcate the technical 
-            knowledge, competence, creativity, soft skills among the UG students. The EEEA also organizes various skill 
-            development sessions such as workshops, project expos to improve the overall technical exposure of the student 
-            community. The association also conducts the intra college event fest, Molecules which atrracts students from 
-            all the departments of the college, serving as a good catapult to launch talented minds into their colourful 
-            career prospects.<br/>
-            To conduct all these activities, the EEEA is formed with a good network of highly motivated office bearers 
-            and team members whom in addition of being students help the association to help the student community in an 
-            enhanced manner. The members of EEEA are actively guided by the Faculty Advisor in keeping up this good work. 
-            Presently Mrs. <span>Sweety Jose P, Assistant Professor, Department of EEE</span> is serving as the faculty advisor. 
-            <span>Mr. Natarajan, V BE EEE(SW)</span> and <span>Mr. Ashwanth Balaji IV BE EEE</span> are currently serving as 
-            the Secretary and Co-Secretary of the association respectively.</p>
+            <p>The EEEA consists of a team of highly passionate office bearers and enthusiastic team members, who strive to bring the core purpose of the association into the spotlight. The EEEA aims to enhance technical knowledge, ignite the creative fire, and develop the necessary soft skills among the undergraduate students by conducting innovative and interactive events. Through various workshops, project expos, and informative guest lectures, the association attempts to contribute to the overall skill development of the students and help them in paving their own path. The intra-college event fests conducted by the association allows the pooling of knowledge from not only different departments but also from students of different colleges which bring a lot of exposure to the vast opportunities around us.<br/>
+            The association is actively guided by <span>Mr. S. KARTHIKEYAN, ASSISTANT PROFESSOR, DEPARTMENT OF EEE</span> - Faculty Advisor, <span>Ms. D. ROSINI, V BE EEE SW</span>, Secretary, EEEA, and <span>Ms. S. MANJU, IV BE EEE</span> Co-Secretary, EEEA. With the valuable inputs of the faculty advisors and firm support from the secretary, the activities are conducted in a well-co-ordinated manner.            
         </div>
 
         <!-- code for the navigation icons on home page -->
